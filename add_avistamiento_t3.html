@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="author" content="Abraham Oquiche">
+    <title>Avistamiento Animal</title>
+    <link rel="stylesheet" type="text/css" media="screen" href="style_t3.css" />
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@700&display=swap" rel="stylesheet">
+    <script src='static/validador_t3.js'></script>
+</head>
+<body onload="setForm()">
+    <div class="titulo">
+        Reporte de avistamiento animal
+    </div>
+    <ul class="index">
+        <li><a href="cgi-bin/index_t3.py">Portada</a></li>
+        <li><a href="cgi-bin/list_t3.py">Ver Listado de Avistamientos</a></li>
+        <li><a class="active" href="add_avistamiento_t3.html">Informar Avistamiento</a></li>
+        <li><a href="show_estadistica_t3.html">Mostrar estadisticas</a></li>
+    </ul>
+    <form id='formulario' method='post' action="cgi-bin/save_avistamiento_t3.py"
+          onsubmit="return send()" enctype="multipart/form-data">
+        <input type='button' value='Informar otro avistamiento' class='boton' onclick='insertForm()'>
+        <div class="formblock">
+            <div class="leyenda">Lugar</div>
+            <div class="subform">
+                <div>Region:
+                    <select name="region" required="required" onclick="fillRegion(this)" onchange="fillComuna(value,this)">
+                        <option value="" selected="selected">Seleccione una opcion</option>
+                    </select>
+                </div>
+                <div>Comuna:
+                    <select name="comuna" required="required">
+                        <option value="" selected="selected">Seleccione una opcion</option>
+                    </select>
+                </div>
+                <div>Sector:
+                    <input type="text" size="200" maxlength="100" name="sector">
+                </div>
+                <div>Dia-hora:
+                    <input type='text' size='20' id="fecha" name='dia-hora-avistamiento' value='año-mes-dia hora:minuto'>
+                </div>
+            </div>
+            <div class='leyenda'>Datos de contacto</div>
+            <div class="subform">
+                <div>Nombre:
+                    <input type='text' size='100' maxlength='200' name='nombre' required='required'>
+                </div>
+                <div>Email:
+                    <input type='text' size='100' name='email' required='required'>
+                </div>
+                <div>Numero de celular:
+                    <input type='text' size='15' name='celular'>
+            </div>
+        </div>
+        </div>
+        <input id='enviar' type='button' class="boton" value='Enviar informacion de avistamiento' onclick='confimacion(this)'>
+        <div id='confirmacion' style="display: none">¿Esta seguro que desea enviar esta informacion?<br>
+            <input class='boton' type='submit' value='Si, estoy total y absolutamente seguro' onclick='send()'>
+            <input class='boton' type='button' value='No estoy seguro, quiero volver al formulario' onclick='cancelar()'>
+        </div>
+    </form>
+</body>
+</html>
