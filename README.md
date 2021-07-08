@@ -1,6 +1,8 @@
 
 #Python CGI Ajax web dev project
 
+---
+
 ## Descripcion del proyecto
 Este proyecto fue realizado para el curso de
 desarrollo de aplicaciones web de la Universidad de Chile,
